@@ -329,10 +329,10 @@ const App: React.FC = () => {
         </div>
 
         <div className="flex-[2] flex flex-col items-center justify-center text-center px-2">
-          <h1 className="text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-teal-300 to-indigo-400">
+          <h1 className="text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-teal-300 to-indigo-400 w-4/5 md:w-full mx-auto">
             {currentSectionDetails.title}
           </h1>
-          <div className="flex items-center justify-center gap-2 text-gray-400 text-sm md:text-base">
+          <div className="flex items-center justify-center gap-2 text-gray-400 text-sm md:text-base w-4/5 md:w-full mx-auto">
             <p>{currentSectionDetails.description}</p>
             {'explanation' in currentSectionDetails && (
               <div className="group relative">
@@ -353,20 +353,25 @@ const App: React.FC = () => {
       </header>
 
       <main className="flex-1 flex flex-col md:flex-row overflow-hidden">
-        <div className="w-full md:w-1/3 flex flex-col items-center justify-center p-4 md:p-8 bg-gray-900 border-r-0 md:border-r border-gray-700/50">
-          <IkigaiChart currentSection={currentSection} language={language} />
-        </div>
+        {currentSection !== Section.Intro && (
+          <div className="w-full md:w-1/3 flex flex-col items-center justify-center p-4 md:p-8 bg-gray-900 border-r-0 md:border-r border-gray-700/50">
+            <IkigaiChart currentSection={currentSection} language={language} />
+          </div>
+        )}
         
-        <div className="w-full md:w-2/3 flex flex-col bg-gray-800">
+        <div className={`w-full ${currentSection !== Section.Intro ? 'md:w-2/3' : ''} flex flex-col bg-gray-800`}>
           <div className="flex-1 p-4 overflow-y-auto">
             {currentSection === Section.Intro ? (
-              <div className="flex flex-col items-center justify-center h-full text-center text-gray-300 px-4">
+              <div className="flex flex-col items-center justify-center h-full text-center text-gray-300 px-4 py-8">
+                <div className="mb-6">
+                  <IkigaiChart currentSection={currentSection} language={language} />
+                </div>
                 <button 
                   onClick={() => setIsIkigaiModalOpen(true)}
-                  className="text-base md:text-xl font-semibold mb-4 text-teal-300 hover:text-teal-200 underline decoration-dotted underline-offset-4 transition-colors">
+                  className="text-sm md:text-base font-medium mb-6 text-teal-300 hover:text-teal-200 underline decoration-dotted underline-offset-4 transition-colors">
                   {currentUiStrings.whatIsIkigai}
                 </button>
-                <p className="w-4/5 md:max-w-md mb-8 text-sm md:text-base">
+                <p className="w-4/5 md:max-w-md mb-8 text-sm md:text-base leading-relaxed">
                   {currentUiStrings.ikigaiExplanation}
                 </p>
                 <button 
