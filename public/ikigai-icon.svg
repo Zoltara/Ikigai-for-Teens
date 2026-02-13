@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <style>
+      .circle { mix-blend-mode: multiply; opacity: 0.7; }
+    </style>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="512" height="512" fill="#1f2937"/>
+  
+  <!-- Four overlapping circles representing Ikigai -->
+  <!-- Top-left circle: What You Love (Rose/Pink) -->
+  <circle class="circle" cx="210" cy="210" r="140" fill="#f43f5e"/>
+  
+  <!-- Top-right circle: What You're Good At (Lime/Green) -->
+  <circle class="circle" cx="302" cy="210" r="140" fill="#84cc16"/>
+  
+  <!-- Bottom-left circle: What the World Needs (Sky/Blue) -->
+  <circle class="circle" cx="210" cy="302" r="140" fill="#0ea5e9"/>
+  
+  <!-- Bottom-right circle: What You Can Be Paid For (Amber/Yellow) -->
+  <circle class="circle" cx="302" cy="302" r="140" fill="#f59e0b"/>
+  
+  <!-- Center highlight for the Ikigai intersection -->
+  <circle cx="256" cy="256" r="35" fill="#ffffff" opacity="0.3"/>
+</svg>
