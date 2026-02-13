@@ -321,34 +321,35 @@ const App: React.FC = () => {
       {isIkigaiModalOpen && renderIkigaiModal()}
       
       {/* Header with Flexbox for better spacing and no overlap */}
-      <header className="flex items-center justify-between p-4 border-b border-gray-700/50 shadow-lg bg-gray-800/50 backdrop-blur-sm z-10 relative">
-        <div className="flex-1 flex justify-start">
+      <header className="flex flex-col md:flex-row items-center justify-between p-3 md:p-4 border-b border-gray-700/50 shadow-lg bg-gray-800/50 backdrop-blur-sm z-10 relative gap-2">
+        {/* Language toggle at top on mobile */}
+        <div className="w-full md:flex-1 flex justify-center md:justify-end order-first md:order-last">
+          <button onClick={() => setLanguage(lang => lang === 'en' ? 'th' : 'en')} className="px-4 py-1.5 text-sm font-semibold text-gray-300 bg-gray-700/50 rounded-full hover:bg-gray-600/50 transition-colors">
+            <span className={language === 'en' ? 'text-teal-300' : ''}>EN</span> / <span className={language === 'th' ? 'text-teal-300' : ''}>TH</span>
+          </button>
+        </div>
+
+        <div className="flex-1 flex justify-start order-first md:order-first">
             <button onClick={() => setIsIkigaiModalOpen(true)} className="hidden md:block px-3 py-1.5 text-sm font-semibold text-white bg-sky-600 rounded-full hover:bg-sky-500 transition-colors whitespace-nowrap">
               {currentUiStrings.whatIsIkigai}
             </button>
         </div>
 
-        <div className="flex-[2] flex flex-col items-center justify-center text-center px-2">
-          <h1 className="text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-teal-300 to-indigo-400 w-4/5 md:w-full mx-auto">
+        <div className="flex-[2] flex flex-col items-center justify-center text-center px-2 order-2">
+          <h1 className="text-xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-teal-300 to-indigo-400 w-full mx-auto">
             {currentSectionDetails.title}
           </h1>
-          <div className="flex items-center justify-center gap-2 text-gray-400 text-sm md:text-base w-4/5 md:w-full mx-auto">
+          <div className="flex items-center justify-center gap-2 text-gray-400 text-xs md:text-base w-full mx-auto">
             <p>{currentSectionDetails.description}</p>
             {'explanation' in currentSectionDetails && (
               <div className="group relative">
-                <InfoIcon className="w-5 h-5 cursor-help" />
+                <InfoIcon className="w-4 h-4 md:w-5 md:h-5 cursor-help" />
                 <div className="absolute top-full mt-2 left-1/2 -translate-x-1/2 w-72 p-3 bg-gray-900 border border-gray-600 text-white text-sm rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-20">
                   {(currentSectionDetails as any).explanation}
                 </div>
               </div>
             )}
           </div>
-        </div>
-        
-        <div className="flex-1 flex justify-end">
-          <button onClick={() => setLanguage(lang => lang === 'en' ? 'th' : 'en')} className="px-3 py-1 text-sm font-semibold text-gray-300 bg-gray-700/50 rounded-full hover:bg-gray-600/50 transition-colors">
-            <span className={language === 'en' ? 'text-teal-300' : ''}>EN</span> / <span className={language === 'th' ? 'text-teal-300' : ''}>TH</span>
-          </button>
         </div>
       </header>
 
@@ -362,21 +363,21 @@ const App: React.FC = () => {
         <div className={`w-full ${currentSection !== Section.Intro ? 'md:w-2/3' : ''} flex flex-col bg-gray-800`}>
           <div className="flex-1 p-4 overflow-y-auto">
             {currentSection === Section.Intro ? (
-              <div className="flex flex-col items-center justify-center h-full text-center text-gray-300 px-4 py-8">
-                <div className="mb-6">
+              <div className="flex flex-col items-center justify-start md:justify-center h-full text-center text-gray-300 px-4 py-4 md:py-8">
+                <div className="mb-3 md:mb-6 scale-90 md:scale-100">
                   <IkigaiChart currentSection={currentSection} language={language} />
                 </div>
                 <button 
                   onClick={() => setIsIkigaiModalOpen(true)}
-                  className="text-sm md:text-base font-medium mb-6 text-teal-300 hover:text-teal-200 underline decoration-dotted underline-offset-4 transition-colors">
+                  className="text-xs md:text-base font-medium mb-3 md:mb-6 text-teal-300 hover:text-teal-200 underline decoration-dotted underline-offset-4 transition-colors">
                   {currentUiStrings.whatIsIkigai}
                 </button>
-                <p className="w-4/5 md:max-w-md mb-8 text-sm md:text-base leading-relaxed">
+                <p className="w-[90%] md:max-w-md mb-4 md:mb-8 text-xs md:text-base leading-relaxed">
                   {currentUiStrings.ikigaiExplanation}
                 </p>
                 <button 
                   onClick={handleNextSection}
-                  className="px-8 py-3 bg-gradient-to-r from-teal-500 to-indigo-600 rounded-full font-bold text-white hover:scale-105 transition-transform duration-300 shadow-lg">
+                  className="px-8 py-3 bg-gradient-to-r from-teal-500 to-indigo-600 rounded-full font-bold text-white hover:scale-105 transition-transform duration-300 shadow-lg text-sm md:text-base">
                   {currentUiStrings.findButton}
                 </button>
               </div>
