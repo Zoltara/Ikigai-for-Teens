@@ -360,9 +360,13 @@ const App: React.FC = () => {
         <div className="w-full md:w-2/3 flex flex-col bg-gray-800">
           <div className="flex-1 p-4 overflow-y-auto">
             {currentSection === Section.Intro ? (
-              <div className="flex flex-col items-center justify-center h-full text-center text-gray-300">
-                <h2 className="text-xl font-semibold mb-4">{currentUiStrings.whatIsIkigai}</h2>
-                <p className="max-w-md mb-8">
+              <div className="flex flex-col items-center justify-center h-full text-center text-gray-300 px-4">
+                <button 
+                  onClick={() => setIsIkigaiModalOpen(true)}
+                  className="text-base md:text-xl font-semibold mb-4 text-teal-300 hover:text-teal-200 underline decoration-dotted underline-offset-4 transition-colors">
+                  {currentUiStrings.whatIsIkigai}
+                </button>
+                <p className="w-4/5 md:max-w-md mb-8 text-sm md:text-base">
                   {currentUiStrings.ikigaiExplanation}
                 </p>
                 <button 
